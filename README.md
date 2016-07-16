@@ -15,4 +15,6 @@ An example RPC stock service using Go Micro
 - Run the service              
 ``` Go
  go run main.go --config_file_path=path/to/your/cofig/file
- ```
+```
+### To do
+- DB migrations
