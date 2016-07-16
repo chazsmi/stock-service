@@ -1,0 +1,5 @@
+---
+
+cscluster:
+  host: localhost
+  port: 32776

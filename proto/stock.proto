@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service Stock {
+    rpc Check(StockRequest) returns (StockResponse) {}
+}
+
+message StockRequest {
+    string sku = 1;
+}
+
+message StockResponse {
+    string sku = 1;
+    int32 amount = 2;
+}
