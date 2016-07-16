@@ -34,7 +34,7 @@ func Get(sku string) (*proto.StockResponse, error) {
 	var amount int32
 	if err := Session.Query(`SELECT amount FROM items WHERE sku = ?`,
 		sku).Consistency(gocql.One).Scan(&amount); err != nil {
-		return &proto.StockResponse{Sku: "fail"}, err
+		return &proto.StockResponse{}, err
 	}
 	return &proto.StockResponse{
 		Sku:    sku,
