@@ -13,8 +13,9 @@ type Stock struct {
 func (s *Stock) Check(ctx context.Context, req *stock.StockRequest, rsp *stock.StockResponse) error {
 	stockResult, err := cs.Get(req.Sku)
 	if err != nil {
-		return errors.InternalServerError("service.stock.Check", err.Error())
+		return errors.InternalServerError("service.stock.Stock.Check", err.Error())
 	}
-	rsp = stockResult
+	rsp.Sku = stockResult.Sku
+	rsp.Amount = stockResult.Amount
 	return nil
 }
