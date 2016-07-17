@@ -1,14 +1,20 @@
 syntax = "proto3";
 
 service Stock {
-    rpc Check(StockRequest) returns (StockResponse) {}
+    rpc Check(StockRequest) returns (StockReadResponse) {}
+    rpc Update(StockRequest) returns (StockWriteResponse) {}
 }
 
 message StockRequest {
     string sku = 1;
+    int32 amount = 2;
 }
 
-message StockResponse {
+message StockReadResponse {
     string sku = 1;
     int32 amount = 2;
+}
+
+message StockWriteResponse {
+    bool success = 1;
 }

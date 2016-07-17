@@ -30,14 +30,22 @@ func Init() {
 	Session = session
 }
 
-func Get(sku string) (*proto.StockResponse, error) {
+func Get(sku string) (*proto.StockReadResponse, error) {
 	var amount int32
 	if err := Session.Query(`SELECT amount FROM items WHERE sku = ?`,
 		sku).Consistency(gocql.One).Scan(&amount); err != nil {
-		return &proto.StockResponse{}, err
+		return &proto.StockReadResponse{}, err
 	}
-	return &proto.StockResponse{
+	return &proto.StockReadResponse{
 		Sku:    sku,
 		Amount: amount,
 	}, nil
+}
+
+func Update(sku string, amount int32) error {
+	if err := Session.Query(`UPDATE items set amount = ? WHERE sku = ?`,
+		amount, sku).Consistency(gocql.One).Exec(); err != nil {
+		return err
+	}
+	return nil
 }
