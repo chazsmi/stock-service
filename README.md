@@ -16,5 +16,12 @@ An example RPC stock service using Go Micro
 ``` Go
  go run main.go --config_file_path=path/to/your/cofig/file
 ```
+### Query the service from the command line
+``` Go
+ go get github.com/micro/micro
+```
+``` bash
+ micro query charlieplc.stock Stock.Update '{"sku":"123456","amount":1}' 
+```
 ### To do
 - DB migrations
