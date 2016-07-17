@@ -1,6 +1,10 @@
 # Example Stock Service        
 An example RPC stock service using Go Micro
 
+This service is an example service in the following scenero
+<p align="center">
+  <img src="stock.png" />
+</p>
 ### Dependencies
 - Go Micro
 - Consul                       
