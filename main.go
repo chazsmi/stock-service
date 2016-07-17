@@ -6,15 +6,15 @@ import (
 	"github.com/chazsmi/stock-service/config"
 	"github.com/chazsmi/stock-service/cs"
 	"github.com/chazsmi/stock-service/handlers"
-	proto "github.com/chazsmi/stock-service/proto"
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/server"
 )
 
 func main() {
 	// Create a new service. Optionally include some options here.
 	service := micro.NewService(
-		micro.Name("service.stock"),
+		micro.Name("charlieplc.api.stock"),
 		micro.Version("latest"),
 		micro.Flags(
 			cli.StringFlag{
@@ -28,7 +28,12 @@ func main() {
 		}),
 	)
 
-	proto.RegisterStockHandler(service.Server(), &handlers.Stock{})
+	// Register Handlers
+	server.Handle(
+		server.NewHandler(
+			new(handlers.Stock),
+		),
+	)
 
 	service.Init()
 
