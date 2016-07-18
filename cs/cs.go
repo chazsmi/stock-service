@@ -13,11 +13,7 @@ var (
 )
 
 // Opens a Cassandra Session
-func Init() {
-	c, err := config.ReadReturn(config.File)
-	if err != nil {
-		log.Fatal(err)
-	}
+func Init(c *config.Config) {
 	cluster := gocql.NewCluster(c.CsCluster.Host)
 	cluster.Keyspace = "stock"
 	cluster.Port = c.CsCluster.Port

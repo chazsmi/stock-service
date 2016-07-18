@@ -9,10 +9,10 @@ This service is an example service in the following scenero
 - Go Micro
 - Consul                       
 - Cassandra                    
-
+- RabbitMQ
 ### To run the service
 - Make sure you have Consul installed and running
-- Make yourself a copy of the config yaml file specifying the location of your Cassandra instance
+- Make yourself a copy of the config yaml file specifying the location of your Cassandra and Rabbit instances
 ``` bash
  cp config.example.yml config.yml
 ```
