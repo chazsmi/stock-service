@@ -7,16 +7,17 @@ This service is an example service in the following scenero
 </p>
 ### Dependencies
 - Go Micro
-- Consul                       
-- Cassandra                    
+- Consul
+- Cassandra
 - RabbitMQ
+
 ### To run the service
 - Make sure you have Consul installed and running
 - Make yourself a copy of the config yaml file specifying the location of your Cassandra and Rabbit instances
 ``` bash
  cp config.example.yml config.yml
 ```
-- Run the service              
+- Run the service
 ``` Go
  go run main.go --config_file_path=path/to/your/cofig/file
 ```
