@@ -1,11 +1,12 @@
 package handlers
 
 import (
-	"encoding/json"
 	"log"
 
+	"github.com/chazsmi/stock-service/proto"
 	"github.com/micro/go-micro/broker"
 	_ "github.com/micro/go-plugins/broker/rabbitmq"
+	"github.com/micro/protobuf/proto"
 )
 
 var topic = "charlieplc.topic.stock"
@@ -15,13 +16,14 @@ type StockChange struct {
 	Amount int32  `json:"amount"`
 }
 
-func pub(stockUpdated StockChange) {
-	j, err := json.Marshal(stockUpdated)
+func pub(stockUpdated *stock.StockReadResponse) {
+	p, err := proto.Marshal(stockUpdated)
 	if err != nil {
 		log.Println("Trying to pub json marhsal failed - " + err.Error())
 	}
 	msg := &broker.Message{
-		Body: j,
+		Header: map[string]string{"ContentType": "application/x-protobuf"},
+		Body:   p,
 	}
 	if err := broker.Publish(topic, msg); err != nil {
 		log.Printf("[pub] failed: %v", err)

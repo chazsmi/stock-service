@@ -27,9 +27,10 @@ func (s *Stock) Update(ctx context.Context, req *stock.StockRequest, rsp *stock.
 	}
 	rsp.Success = true
 	// Publish aysnc stock change event
-	pub(StockChange{
+	res := stock.StockReadResponse{
 		Sku:    req.Sku,
 		Amount: req.Amount,
-	})
+	}
+	pub(&res)
 	return nil
 }
