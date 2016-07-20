@@ -14,6 +14,9 @@ type Config struct {
 		Host string
 		Port int
 	}
+	Rabbit struct {
+		Host string
+	}
 }
 
 var File string

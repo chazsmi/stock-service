@@ -46,7 +46,7 @@ func main() {
 	}
 
 	if err := broker.Init(broker.Option(func(o *broker.Options) {
-		o.Addrs = []string{"192.168.99.100:32889"}
+		o.Addrs = []string{c.Rabbit.Host}
 	})); err != nil {
 		log.Fatalf("Broker Init error: %v", err)
 	}
