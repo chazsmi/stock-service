@@ -11,11 +11,6 @@ import (
 
 var topic = "charlieplc.topic.stock"
 
-type StockChange struct {
-	Sku    string `json:"sku"`
-	Amount int32  `json:"amount"`
-}
-
 func pub(stockUpdated *stock.StockReadResponse) {
 	p, err := proto.Marshal(stockUpdated)
 	if err != nil {
